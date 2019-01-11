@@ -1,14 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./App.css";
 
 const Person = ({ img, name, age }) => {
   return (
     <div>
-      <img src={img} alt="place an image here please" />
+      <img src={img} alt="There's supposed to be a person here" />
       <h2>name: {name}</h2>
       <p>age: {age}</p>
     </div>
   );
+};
+
+Person.propTypes = {
+  id: PropTypes.number,
+  img: PropTypes.string,
+  name: PropTypes.string,
+  age: PropTypes.number
 };
 
 class PersonList extends Component {
