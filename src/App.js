@@ -46,7 +46,7 @@ class PersonList extends Component {
               key={person.id}
               img={person.img}
               age={person.age}
-              name={person.age}
+              name={person.name}
             />
           );
         })}
