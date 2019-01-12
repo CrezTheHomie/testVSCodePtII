@@ -13,10 +13,16 @@ const Person = ({ img, name, age }) => {
 };
 
 Person.propTypes = {
-  id: PropTypes.number,
-  img: PropTypes.string,
-  name: PropTypes.string,
-  age: PropTypes.number
+  id: PropTypes.number.isRequired,
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  age: PropTypes.numberis.Required
+};
+
+Person.defaultProps = {
+  img: "https://i.vimeocdn.com/portrait/11037501_300x300",
+  name: "he-who-must-not-be-named",
+  age: 00
 };
 
 class PersonList extends Component {
