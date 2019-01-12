@@ -4,7 +4,7 @@ import "./App.css";
 
 const Person = ({ img, name, age }) => {
   return (
-    <div>
+    <div style={{ margin: "3rem", display: "block" }}>
       <img src={img} alt="There's supposed to be a person here" />
       <h2>name: {name}</h2>
       <p>age: {age}</p>
@@ -12,17 +12,17 @@ const Person = ({ img, name, age }) => {
   );
 };
 
-Person.propTypes = {
-  id: PropTypes.number.isRequired,
-  img: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  age: PropTypes.numberis.Required
-};
+// Person.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   img: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   age: PropTypes.numberis.Required
+// };
 
 Person.defaultProps = {
   img: "https://i.vimeocdn.com/portrait/11037501_300x300",
   name: "he-who-must-not-be-named",
-  age: 00
+  age: 0
 };
 
 class PersonList extends Component {
@@ -56,12 +56,14 @@ class PersonList extends Component {
       <div>
         {this.state.people.map(person => {
           return (
-            <Person
-              key={person.id}
-              img={person.img}
-              age={person.age}
-              name={person.name}
-            />
+            <div className="Person">
+              <Person
+                key={person.id}
+                img={person.img}
+                age={person.age}
+                name={person.name}
+              />
+            </div>
           );
         })}
       </div>
@@ -86,13 +88,40 @@ class ControlledInput extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={{ margin: "1rem" }}>
         <input
           type="text"
           value={this.state.text}
           onChange={this.handleTextInput}
           name="I have no name"
         />
+        <button type="submit" onClick="handleSubmit" style={{ margin: "1rem" }}>
+          Submit
+        </button>
+      </form>
+    );
+  }
+}
+
+class UnControlledInput extends Component {
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.name.value);
+    console.log(this.email.value);
+  };
+  render() {
+    return (
+      <form style={{ margin: "1rem" }}>
+        <input
+          type="text"
+          name="I have no name"
+          ref={val => (this.name = val)}
+        />
+        <br />
+        <input type="email" name="email" ref={mail => (this.email = mail)} />
+        <button type="submit" onClick="handleSubmit" style={{ margin: "1rem" }}>
+          Submit
+        </button>
       </form>
     );
   }
@@ -102,7 +131,11 @@ class App extends Component {
   render() {
     return (
       <div className="Main Div">
-        <PersonList />
+        <div className="PersonList">
+          <PersonList />
+        </div>
+        <ControlledInput />
+        <UnControlledInput />
       </div>
     );
   }
