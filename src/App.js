@@ -69,6 +69,35 @@ class PersonList extends Component {
   }
 }
 
+class ControlledInput extends Component {
+  state = {
+    text: ""
+  };
+  handleTextInput = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      text: value
+    });
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.text);
+  };
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.text}
+          onChange={this.handleTextInput}
+          name="I have no name"
+        />
+      </form>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
